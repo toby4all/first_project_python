@@ -1,3 +1,5 @@
+import json
+
 import pymysql
 
 def add_user(user_id, username):
@@ -43,7 +45,6 @@ def update_user(user_id, username):
     # Getting a cursor from Database
     cursor = conn.cursor()
     cursor.execute(f"UPDATE * {schema_name}.users SET name = {username} WHERE user_id = {user_id}")
-
     cursor.close()
     conn.close()
 

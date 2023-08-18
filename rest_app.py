@@ -1,7 +1,5 @@
 from flask import Flask, request
-import json
 from db_connector import add_user, get_user, delete_user, update_user
-
 app = Flask(__name__)
 
 # supported methods
@@ -10,19 +8,16 @@ def user(user_id):
     if request.method == 'POST':
         # getting the json data payload from request
         request_data = request.json
-        user_name = request_data.get('name')
+        user_name = request_data.get['name']
         if user_id > 2:
             add_user(user_id, user_name)
             return {'user id': user_id, 'user name': user_name, 'status': 'saved'}, + 200  # status code
         else:
             return {'status': 'error', 'reason': 'id already exist'}, + 500  # status cod
-
-
     elif request.method == 'GET':
         request_data = request.json
         user_name = request_data.get('user_id')
-        print(len(user_name))
-        if len(user_name) <= 2:
+        if user_id <= 2:
             get_user(user_name)
             return {'status': 'ok', 'user_name': user_name}, 200  # status code
         else:

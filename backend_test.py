@@ -1,10 +1,11 @@
 import requests
 import pymysql
+import json
 
 # request to post new data to database with usr_name 'John'
-res = requests.post('http://127.0.0.1:5000/users/3', json={"user_name": "Anabella"})
-if res.ok:
-    print(res.status_code)
+headers = {'Content-Type': 'application/json'}
+res = requests.post('http://127.0.0.1:5000/users/3', json={"name": "Anabella"}, headers=headers)
+if res.status_code == 200:
     print(res.json())
 
 # request to get data from database with usr_id '1'
@@ -13,8 +14,8 @@ if response.ok:
     print(response.status_code)
     print(response.json())
 
-# query database to make sure username is stored under id:'1'
-
+# query database to make sure username is stored under id:'3'
+#
 schema_name = "mydb"
 
 # Establishing a connection to DB

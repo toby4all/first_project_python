@@ -8,7 +8,7 @@ res = requests.post('http://127.0.0.1:5000/users/3', json={"name": "Anabella"}, 
 if res.status_code == 200:
     print(res.json())
 
-# request to get data from database with usr_id '1'
+# request to get data from database with usr_id '3'
 response = requests.get('http://127.0.0.1:5000/users/3')
 if response.ok:
     print(response.status_code)
@@ -34,7 +34,7 @@ cursor.close()
 conn.close()
 
 # request to update user_name in database to new data "George"
-response = requests.put('http://127.0.0.1:5000/users/2', json={"user_name": "George"})
+response = requests.put('http://127.0.0.1:5000/users/2', json={"name": "George"})
 if response.ok:
     print(response.status_code)
     print(response.json())

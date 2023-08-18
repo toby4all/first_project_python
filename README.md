@@ -1,6 +1,6 @@
 # first_project_python
 # The files in this project are as follows
-     #backend testing.py- post, get, update and d3lete method route testing.
+     #backend testing.py- post, get, update and delete method route testing.
      
      #frontend testing.py- For testing route that returns html element using selenium.
      

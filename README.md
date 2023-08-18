@@ -2,10 +2,10 @@
 # The files in this project are as follows
      #backend testing.py- post, get, update and delete method route testing.
      
-     #frontend testing.py- For testing route that returns html element using selenium.
+     #frontend testing.py- For testing route that returns html element using selenium for testing it..
      
-      #db_connector.py. for establishing connecion with the datbase using functions to perform crude operation  for the database.
-      this functions will be exported to the server script
+      #db_connector.py. for establishing connection with the datbase using functions to perform crude operation  for the database.
+      this functions will be exported to the server script. rest_app.py
      
       #resp_app.py- contains api server bult with Flask.
        each of the methoods in this route should return a json file on request.

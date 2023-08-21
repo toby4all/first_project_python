@@ -9,7 +9,7 @@ options {
                 echo 'Hello World'
             }
         }
-           stage('Hello') {
+           stage('Hello Tobby') {
             steps {
                 echo 'Hello Tobby'
             }

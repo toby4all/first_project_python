@@ -1,19 +1,22 @@
 import json
-
 import pymysql
 
 def add_user(user_id, username):
     schema_name = 'myDb'
     # Establishing a connection to DB
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db=schema_name)
+    conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='password', db=schema_name)
     conn.autocommit(True)
 
     # Getting a cursor from Database
     cursor = conn.cursor()
 
     # Inserting data into table
-    cursor.execute(f"INSERT into {schema_name}.users (name, id) VALUES ('{username}', {user_id})")
-
+    cursor.execute(f"INSERT into {schema_name}.users (name, user_id) VALUES ('{username}', {user_id})")
+    # results = cursor.fetchone()
+    # # if results:
+    # #     return results[0]
+    # # else:
+    # #     return None
     cursor.close()
     conn.close()
 
@@ -39,7 +42,7 @@ def get_user(user_id):
 def update_user(user_id, username):
     schema_name = 'myDb'
     # Establishing a connection to DB
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db=schema_name)
+    conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='password', db=schema_name)
     conn.autocommit(True)
 
     # Getting a cursor from Database
@@ -51,7 +54,7 @@ def update_user(user_id, username):
 def delete_user(user_id):
     schema_name = 'myDb'
     # Establishing a connection to DB
-    conn = pymysql.connect(host='127.0.0.1', port=3306, user='root', passwd='123', db=schema_name)
+    conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='password', db=schema_name)
     conn.autocommit(True)
 
     # Getting a cursor from Database

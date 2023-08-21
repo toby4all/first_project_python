@@ -5,7 +5,7 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
 # request to post new data to database with usr_name 'John'
-res = requests.post('http://127.0.0.1:5000/data/2', json={"user_name": "Oluwatobi"})
+res = requests.post('http://127.0.0.1:5000/users/3', json={"name": "Oluwatobi"})
 if res.ok:
     print(res.status_code)
     print(res.json())

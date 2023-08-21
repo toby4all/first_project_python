@@ -13,8 +13,15 @@
       
        combine_testing.py. This contains both forntend and backend testing that was accomplished previously. 
 
-#The web_rest.py works perfectly with the databse and I was able to test using Selenium with the fronend
+#The web_rest.py works perfectly with the database and I was able to test using Selenium with the frontend
 test.py script. 
-However, i failed to get json data on response for the routes in rest.app.py and it says unsupported Media type on the browser. 
 
-Please examine my code especially the rest_app.py and the backend_test.py. I need your feedback to know where i got it all wrong.
+The route for rest_app.py is working now and I am getting a Json response but not the response I want because I am 
+getting a status code of 500 which say user does not exist when I try to post a new user to the database
+with a new user Id ="3".
+
+
+Please examine my code, I do not really know why am not getting the desired response from the database. 
+
+
+

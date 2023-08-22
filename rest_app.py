@@ -9,7 +9,7 @@ def user(user_id):
     if request.method == 'POST':
         # getting the json data payload from request
         request_data = request.json
-        user_name = request_data.get['name']
+        user_name = request_data.get('name')
         if user_id > 2:
             add_user(user_id, user_name)
             return jsonify({'user id': user_id, 'user name': user_name, 'status': 'saved'}, + 200)  # status code

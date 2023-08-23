@@ -2,7 +2,7 @@ import json
 import pymysql
 
 def add_user(user_id, username):
-    schema_name = 'myDb'
+    schema_name = 'mydb'
     # Establishing a connection to DB
     conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='password', db=schema_name)
     conn.autocommit(True)
@@ -11,17 +11,15 @@ def add_user(user_id, username):
     cursor = conn.cursor()
 
     # Inserting data into table
-    cursor.execute(f"INSERT into {schema_name}.users (name, user_id) VALUES ('{username}', {user_id})")
-    # results = cursor.fetchone()
-    # # if results:
-    # #     return results[0]
-    # # else:
-    # #     return None
+    # if user_id > 2:
+    cursor.execute(f"INSERT into {schema_name}.users (user_id, name) VALUES ({user_id}, '{username}')")
+    # else:
+    #     return None
     cursor.close()
     conn.close()
 
 def get_user(user_id):
-    schema_name = 'myDb'
+    schema_name = 'mydb'
     # Establishing a connection to DB
     conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='password', db=schema_name)
     conn.autocommit(True)
@@ -40,7 +38,7 @@ def get_user(user_id):
     conn.close()
 
 def update_user(user_id, username):
-    schema_name = 'myDb'
+    schema_name = 'mydb'
     # Establishing a connection to DB
     conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='password', db=schema_name)
     conn.autocommit(True)
@@ -52,7 +50,7 @@ def update_user(user_id, username):
     conn.close()
 
 def delete_user(user_id):
-    schema_name = 'myDb'
+    schema_name = 'mydb'
     # Establishing a connection to DB
     conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='password', db=schema_name)
     conn.autocommit(True)

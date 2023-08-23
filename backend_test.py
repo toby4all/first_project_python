@@ -3,8 +3,7 @@ import pymysql
 import json
 
 # request to post new data to database with usr_name 'John'
-headers = {'Content-Type': 'application/json'}
-res = requests.post('http://127.0.0.1:5000/users/3', json={"name": "Anabella"}, headers=headers)
+res = requests.post('http://127.0.0.1:5000/users/3', json={"name": "Anabella"},)
 if res.status_code == 200:
     print(res.json())
 

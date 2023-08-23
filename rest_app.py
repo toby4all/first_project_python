@@ -4,7 +4,7 @@ from db_connector import add_user, get_user, delete_user, update_user
 app = Flask(__name__)
 
 # supported methods
-@app.route('/users/<user_id>', methods=['GET', 'POST', 'DELETE', 'PUT'])
+@app.route('/users/<int:user_id>', methods=['GET', 'POST', 'DELETE', 'PUT'])
 def user(user_id):
     if request.method == 'POST':
         # getting the json data payload from request
@@ -16,7 +16,7 @@ def user(user_id):
         else:
             return jsonify({'status': 'error', 'reason': 'id already exist'}, + 500)  # status cod
     elif request.method == 'GET':
-        if user_id in range(0,2):
+        if user_id in range(0,3):
             user_name = get_user(user_id)
             return jsonify({'status': 'ok', 'user_name': user_name}, 200 ) # status code
         else:

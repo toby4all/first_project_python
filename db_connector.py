@@ -45,7 +45,10 @@ def update_user(user_id, username):
 
     # Getting a cursor from Database
     cursor = conn.cursor()
-    cursor.execute(f"UPDATE * {schema_name}.users SET name = {username} WHERE user_id = {user_id}")
+    sql = f"UPDATE {schema_name}.users SET name = %s WHERE user_id = %s"
+    val = (username, user_id)
+    cursor.execute(sql, val)
+    # cursor.execute(f"UPDATE * {schema_name}.users SET name ='{username}' WHERE user_id ={user_id}")
     cursor.close()
     conn.close()
 

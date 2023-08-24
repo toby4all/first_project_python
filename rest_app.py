@@ -16,19 +16,19 @@ def user(user_id):
         else:
             return jsonify({'status': 'error', 'reason': 'id already exist'}, + 500)  # status cod
     elif request.method == 'GET':
-        if user_id in range(0,3):
+        if user_id in range(0,5):
             user_name = get_user(user_id)
             return jsonify({'status': 'ok', 'user_name': user_name}, 200 ) # status code
         else:
             return jsonify({'status': 'error', 'reason': 'no such id'}, +500 ) # status code
     elif request.method == 'PUT':
         request_data = request.json
-        user_name = request_data.get('user_name')
+        user_name = request_data.get('name')
         if user_id in range(0, 2):
             update_user(user_id, user_name)
-            return jsonify({'status': 'ok', 'user_name': user_name}, + 200 ) # status code
+            return jsonify({'status': 'ok', 'user_name': user_name}, + 200)   # status code
         else:
-            return jsonify({'status': 'error', 'reason': 'no such id'}, + 500 ) # status code
+            return jsonify({'status': 'error', 'reason': 'no such id'}, + 500)   # status code
     elif request.method == 'DELETE':
         request_data = request.json
         user_name = request_data.get('user_id')

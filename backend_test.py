@@ -1,14 +1,13 @@
 import requests
 import pymysql
-import json
 
 # request to post new data to database with usr_name 'John'
-res = requests.post('http://127.0.0.1:5000/users/3', json={"name": "Anabella"},)
+res = requests.post('http://127.0.0.1:5000/users/4', json={"name": "Anabella"})
 if res.status_code == 200:
     print(res.json())
 
 # request to get data from database with usr_id '3'
-response = requests.get('http://127.0.0.1:5000/users/3')
+response = requests.get('http://127.0.0.1:5000/users/4')
 if response.ok:
     print(response.status_code)
     print(response.json())
@@ -23,7 +22,7 @@ conn = pymysql.connect(host='127.0.0.1', port=3306, user='user', passwd='passwor
 cursor = conn.cursor()
 
 # Getting all data from table “users”
-cursor.execute(f"SELECT * FROM {schema_name}.users WHERE user_id ='3' ")
+cursor.execute(f"SELECT * FROM {schema_name}.users WHERE user_id ='4' ")
 
 # Iterating table and printing all users
 for row in cursor:

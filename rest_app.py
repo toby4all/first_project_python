@@ -1,6 +1,8 @@
 from flask import Flask, request
 from flask import jsonify
 from db_connector import add_user, get_user, delete_user, update_user
+import os
+import signal
 app = Flask(__name__)
 
 # supported methods
@@ -16,7 +18,7 @@ def user(user_id):
         else:
             return jsonify({'status': 'error', 'reason': 'id already exist'}, + 500)  # status cod
     elif request.method == 'GET':
-        if user_id in range(0,5):
+        if user_id in range(0,7):
             user_name = get_user(user_id)
             return jsonify({'status': 'ok', 'user_name': user_name}, 200 ) # status code
         else:
@@ -37,6 +39,11 @@ def user(user_id):
             return jsonify({'status': 'ok', 'user_deleted': user_name}, + 200 ) # status code
         else:
             return jsonify({'status': 'error', 'reason': 'no such id'}, + 500 ) # status code
+
+@app.route("/stop_server")   # route to stop server
+def stop_server():
+    os.kill(os.getpid(), signal.CTRL_C_EVENT)
+    return 'Server stopped'
 
 
 

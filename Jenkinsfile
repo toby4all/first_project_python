@@ -12,12 +12,12 @@ pipeline {
                 git 'https://github.com/Dgotlieb/JenkinsTest.git'
             }
         }
-       stage('run rest_app server') {
+       stage('run rest app server') {
             steps {
                bat 'start/min python rest_app.py'
             }
       }
-      stage('run web_rest server') {
+      stage('run web rest server') {
             steps {
                bat 'start/min python web_rest.py'
             }

@@ -1,2 +1,4 @@
 .idea/
-* __pycache__/
+
+__pycache__/
+>>>>>>> 587743cab3d633ee6911969a64e2b0c6943783f8

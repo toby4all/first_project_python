@@ -1,18 +1,9 @@
 pipeline {
     agent any
-    triggers {
-        pollSCM('*/30 * * * *')
-    }
-    logRotator {
-        daysToKeep(5)
-        numToKeep(20)
+     options {
+        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
     stages {
-        stage('Checkout code') {
-            steps {
-                git url: 'https://github.com/toby4all/first_project_python.git', branch: 'Main'
-            }
-        }
         stage('Run backend') {
             steps {
                 bat 'python rest_app.py'

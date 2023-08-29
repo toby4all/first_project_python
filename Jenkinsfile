@@ -1,7 +1,10 @@
 pipeline {
     agent any
     options {
-        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '05'))
+        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
+    }
+    environment {
+        PATH = "${env.PATH}C:/Users/Toby/AppData/Local/Programs/Python/Python311"
     }
     stages {
         stage('checkout') {
@@ -14,17 +17,17 @@ pipeline {
         }
         stage('run rest app server') {
             steps {
-                bat 'tart/min python rest_app.py'
+                bat 'start/min python rest_app.py'
             }
         }
         stage('run web rest server') {
             steps {
-                bat 'tart/min python web_rest.py'
+                bat 'start/min python web_rest.py'
             }
         }
         stage('run backend testing') {
             steps {
-                bat 'backend_test.py'
+                bat 'python backend_test.py'
             }
         }
         stage('run frontend testing') {

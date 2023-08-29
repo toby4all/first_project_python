@@ -9,7 +9,7 @@ pipeline {
                 script {
                     properties([pipelineTriggers([pollSCM('*/30 * * * *')])])
                 }
-                git 'https://github.com/Dgotlieb/JenkinsTest.git'
+                git 'https://github.com/toby4all/first_project_python.git'
             }
         }
        stage('run rest app server') {

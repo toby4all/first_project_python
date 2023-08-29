@@ -7,7 +7,7 @@ pipeline {
          stage('checkout now') {
             steps {
                 script {
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                    properties([pipelineTriggers([pollSCM('*/30 * * * *')])])
                 }
                 git 'https://github.com/toby4all/first_project_python.git'
             }

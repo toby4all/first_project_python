@@ -1,54 +1,49 @@
 pipeline {
     agent any
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
+    triggers {
+        pollSCM('*/30 * * * *')
     }
-    environment {
-        PATH = "${env.PATH}C:/Users/Toby/AppData/Local/Programs/Python/Python311"
+    logRotator {
+        daysToKeep(5)
+        numToKeep(20)
     }
     stages {
-        stage('checkout') {
+        stage('Checkout code') {
             steps {
-                script {
-                    properties([pipelineTriggers([pollSCM('H/30 * * * *')])])
-                }
-                git 'https://github.com/toby4all/first_project_python.git'
+                git url: 'https://github.com/toby4all/first_project_python.git', branch: 'Main'
             }
         }
-        stage('run rest app server') {
+        stage('Run backend') {
             steps {
-                bat 'start/min python rest_app.py'
+                bat 'python rest_app.py'
             }
         }
-        stage('run web rest server') {
+        stage('Run frontend') {
             steps {
-                bat 'start/min python web_rest.py'
+                bat 'python web_rest.py'
             }
         }
-        stage('run backend testing') {
+        stage('Run backend tests') {
             steps {
-                bat 'python backend_test.py'
+                bat 'python backend_testing.py'
             }
         }
-        stage('run frontend testing') {
+        stage('Run frontend tests') {
             steps {
-                bat 'python frontend_test.py'
+                bat 'python frontend_testing.py'
             }
         }
-        stage('run fullstack testing') {
+        stage('Run combined tests') {
             steps {
-                bat 'python combine_testing.py'
+                bat 'python combined_testing.py'
             }
         }
-        stage('run clean environment') {
+        stage('Clean environment') {
             steps {
                 bat 'python clean_environment.py'
             }
         }
-        stage('Hello Tobby') {
-            steps {
-                echo 'Hello Oluwatobi'
-            }
-        }
     }
+
 }
+

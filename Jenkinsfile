@@ -12,6 +12,11 @@ pipeline {
                 git 'https://github.com/toby4all/first_project_python.git'
             }
         }
+        stage('Hello world'){
+             steps{
+                 echo 'Hello world'
+            }
+        }
         stage('Run backend') {
             steps {
                 bat 'start/min python rest_app.py'

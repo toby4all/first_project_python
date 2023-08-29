@@ -1,17 +1,6 @@
 pipeline {
     agent any
-     options {
-        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
-    }
     stages {
-         stage('checkout now') {
-            steps {
-                script {
-                    properties([pipelineTriggers([pollSCM('*/30 * * * *')])])
-                }
-                git 'https://github.com/toby4all/first_project_python.git'
-            }
-        }
         stage('Hello world'){
              steps{
                  echo 'Hello Mark'

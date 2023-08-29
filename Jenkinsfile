@@ -1,7 +1,7 @@
 pipeline {
     agent any
     options {
-      buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
+      buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '05'))
       }
     stages {
        stage('checkout') {
@@ -40,6 +40,11 @@ pipeline {
       stage('run clean environment') {
             steps {
                bat 'python clean_environment.py'
+            }
+        }
+      stage('Hello Tobby') {
+            steps {
+               echo 'Hello Tobby'
             }
         }
    }

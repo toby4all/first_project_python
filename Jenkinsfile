@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Hello world'){
              steps{
-                 echo 'Hello world'
+                 echo 'Hello Mark'
             }
         }
         stage('Run backend') {

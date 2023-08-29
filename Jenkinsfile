@@ -4,14 +4,11 @@ pipeline {
       buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '05'))
       }
     stages {
-       stage('checkout') {
-            steps {
-                script {
-                    properties([pipelineTriggers([pollSCM('*/30 * * * *')])])
-                }
-                git 'https://github.com/toby4all/first_project_python.git'
+       stage('checkout'){
+            steps{
+                 git  'https://github.com/toby4all/first_project_python.git'
             }
-        }
+       }
        stage('run rest app server') {
             steps {
                bat 'start/min python rest_app.py'

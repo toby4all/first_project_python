@@ -4,14 +4,22 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
     stages {
+         stage('checkout now') {
+            steps {
+                script {
+                    properties([pipelineTriggers([pollSCM('* * * * *')])])
+                }
+                git 'https://github.com/toby4all/first_project_python.git'
+            }
+        }
         stage('Run backend') {
             steps {
-                bat 'python rest_app.py'
+                bat 'start/min python rest_app.py'
             }
         }
         stage('Run frontend') {
             steps {
-                bat 'python web_rest.py'
+                bat 'start/min python web_rest.py'
             }
         }
         stage('Run backend tests') {

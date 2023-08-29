@@ -47,7 +47,7 @@ pipeline {
         }
         stage('Hello Tobby') {
             steps {
-                echo 'Hello Oluwatobi fabonmi'
+                echo 'Hello Oluwatobi'
             }
         }
     }

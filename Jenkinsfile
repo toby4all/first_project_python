@@ -3,50 +3,40 @@ pipeline {
     stages {
         stage('Hello world'){
              steps{
-                 echo 'Hello Oluwatobi'
+                 echo 'Hello Mark'
             }
         }
         stage('Run backend') {
             steps {
-                withEnv(["PATH+C:/Users/Toby/AppData/Local/Programs/Python/Python311"]) {
-                    bat 'python rest_app.py'
-                }
+                bat 'start/min python rest_app.py'
             }
         }
         stage('Run frontend') {
             steps {
-                withEnv(["PATH+C:/Users/Toby/AppData/Local/Programs/Python/Python311"]) {
-                    bat 'python web_rest.py'
-                }
+                bat 'start/min python web_rest.py'
             }
         }
         stage('Run backend tests') {
             steps {
-                withEnv(["PATH+C:/Users/Toby/AppData/Local/Programs/Python/Python311"]) {
-                    bat 'python3 backend_test.py'
-                }
+                bat 'python backend_testing.py'
             }
         }
         stage('Run frontend tests') {
             steps {
-                withEnv(["PATH+C:/Users/Toby/AppData/Local/Programs/Python/Python311"]) {
-                    bat 'python3 frontend_test.py'
-                }
+                bat 'python frontend_testing.py'
             }
         }
         stage('Run combined tests') {
             steps {
-                withEnv(["PATH+C:/Users/Toby/AppData/Local/Programs/Python/Python311"]) {
-                    bat 'python combined_testing.py'
-                }
+                bat 'python combined_testing.py'
             }
         }
         stage('Clean environment') {
             steps {
-                withEnv(["PATH+C:/Users/Toby/AppData/Local/Programs/Python/Python311"]) {
-                    bat 'python clean_environment.py'
-                }
+                bat 'python clean_environment.py'
             }
         }
     }
+
 }
+

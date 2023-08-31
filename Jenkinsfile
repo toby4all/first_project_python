@@ -2,8 +2,7 @@ pipeline {
     agent any
     environment {
     PATH = "${env.PATH}:/Users/Toby/AppData/Local/Programs/Python/Python311"
-}
-
+    }
     stages {
         stage('Hello world'){
              steps{

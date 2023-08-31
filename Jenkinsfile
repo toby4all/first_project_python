@@ -18,12 +18,12 @@ pipeline {
         }
         stage('Run backend tests') {
             steps {
-                bat 'python backend_testing.py'
+                bat 'python backend_test.py'
             }
         }
         stage('Run frontend tests') {
             steps {
-                bat 'python frontend_testing.py'
+                bat 'python frontend_test.py'
             }
         }
         stage('Run combined tests') {

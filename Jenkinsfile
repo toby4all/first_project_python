@@ -11,7 +11,7 @@ pipeline {
             PATH = "${env.PATH}:/Users/Toby/AppData/Local/Programs/Python/Python311"
          }
             steps {
-                bat 'start/min python rest_app.py'
+                bat 'start/min python --version rest_app.py'
             }
         }
         stage('Run frontend') {

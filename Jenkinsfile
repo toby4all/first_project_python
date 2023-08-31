@@ -1,15 +1,15 @@
 pipeline {
     agent any
-    environment {
-    PATH = "${env.PATH}:/Users/Toby/AppData/Local/Programs/Python/Python311"
-    }
     stages {
         stage('Hello world'){
              steps{
-                 echo 'Hello Toby'
+                 echo 'Hello Tobby'
             }
         }
         stage('Run backend') {
+         environment {
+            PATH = "${env.PATH}:/Users/Toby/AppData/Local/Programs/Python/Python311"
+         }
             steps {
                 bat 'start/min python rest_app.py'
             }

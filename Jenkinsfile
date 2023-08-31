@@ -10,7 +10,7 @@ pipeline {
             steps {
                 script {
                     properties([pipelineTriggers([pollSCM('* * * * *')])])
-                    checkout([$class: 'GitSCM', branches: [[name: 'main']], userRemoteConfigs: [[url: 'https://github.com/toby4all/first_project_python.git']]])
+                    git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
                 }
             }
         }

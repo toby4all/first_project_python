@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Hello world'){
              steps{
-                 echo 'Hello Oluwatobi'
+                 echo 'Hello Toby'
             }
         }
         stage('Run backend') {

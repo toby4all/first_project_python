@@ -7,17 +7,17 @@ pipeline {
     stages {
         stage('Hello world'){
              steps{
-                 echo 'Hello Mark'
+                 echo 'Hello Oluwatobi'
             }
         }
         stage('Run backend') {
             steps {
-                bat 'tart/min python rest_app.py'
+                bat 'start/min python rest_app.py'
             }
         }
         stage('Run frontend') {
             steps {
-                bat 'tart/min python web_rest.py'
+                bat 'start/min python web_rest.py'
             }
         }
         stage('Run backend tests') {

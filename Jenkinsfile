@@ -4,14 +4,18 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
-
+    triggers {
+        pollSCM('H/30 * * * *')
+    }
     stages {
         stage('Checkout') {
             steps {
-                script {
-                    properties([pipelineTriggers([pollSCM('* * * * *')])])
-                    git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
-                }
+               git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
+            }
+        }
+        stage{
+            steps{
+               bat 'pip install --user -r requirements.txt'
             }
         }
         stage('Run Backend Server') {

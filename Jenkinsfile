@@ -12,16 +12,16 @@ pipeline {
                git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
             }
         }
-        stage{
-            steps{
-               bat 'pip install --user -r requirements.txt'
+        stage('Install python packages') {
+             steps {
+                bat 'pip install --user -r requirements.txt'
             }
         }
         stage('Run Backend Server') {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min python rest_app.py'
+                        bat 'start/min python rest_app.py'
                     } else {
                         sh 'nohup python rest_app.py &'
                     }
@@ -32,7 +32,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min python web_rest.py'
+                        bat 'start/min python web_rest.py'
                     } else {
                         sh 'nohup python web_rest.py &'
                     }
@@ -43,7 +43,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min python backend_test.py'
+                        bat 'start/min python backend_test.py'
                     } else {
                         sh 'nohup python backend_test.py &'
                     }
@@ -54,7 +54,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min python frontend_test.py'
+                        bat 'start/min python frontend_test.py'
                     } else {
                         sh 'nohup python frontend_test.py &'
                     }
@@ -65,7 +65,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min python combine_testing.py'
+                        bat 'start/min python combine_testing.py'
                     } else {
                         sh 'nohup python combine_testing.py &'
                     }
@@ -76,7 +76,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min python clean_environment.py'
+                        bat 'start/min python clean_environment.py'
                     } else {
                         sh 'nohup python clean_environment.py &'
                     }

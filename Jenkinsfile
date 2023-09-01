@@ -1,11 +1,10 @@
 pipeline {
     agent any
-
-    options {
-        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
-    }
     triggers {
         pollSCM('H/30 * * * *')
+    }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
     stages {
         stage('Checkout') {
@@ -22,7 +21,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min python rest_app.py'
+                        bat 'start /min python rest_app.py'
                     } else {
                         sh 'nohup python rest_app.py &'
                     }
@@ -33,7 +32,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min python web_rest.py'
+                        bat 'start /min python web_rest.py'
                     } else {
                         sh 'nohup python web_rest.py &'
                     }
@@ -44,7 +43,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min python backend_test.py'
+                        bat 'start /min python backend_test.py'
                     } else {
                         sh 'nohup python backend_test.py &'
                     }
@@ -55,7 +54,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min python frontend_test.py'
+                        bat 'start /min python frontend_test.py'
                     } else {
                         sh 'nohup python frontend_test.py &'
                     }
@@ -66,7 +65,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min python combine_testing.py'
+                        bat 'start /min python combine_testing.py'
                     } else {
                         sh 'nohup python combine_testing.py &'
                     }
@@ -77,7 +76,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min python clean_environment.py'
+                        bat 'start /min python clean_environment.py'
                     } else {
                         sh 'nohup python clean_environment.py &'
                     }

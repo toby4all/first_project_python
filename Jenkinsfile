@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min ${env.PYTHON_PATH}\\python.exe rest_app.py'
+                        bat 'start/min ${env.PYTHON_PATH}/python rest_app.py'
                     } else {
                         sh 'nohup python rest_app.py &'
                     }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /min ${env.PYTHON_PATH}\\python.exe web_rest.py'
+                        bat 'start/min ${env.PYTHON_PATH}/python web_rest.py'
                     } else {
                         sh 'nohup python web_rest.py &'
                     }
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe backend_test.py'
+                        bat '${env.PYTHON_PATH}/ backend_test.py'
                     } else {
                         sh 'nohup python backend_test.py &'
                     }

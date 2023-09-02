@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '/python frontend_test.py'
+                        bat 'python frontend_test.py'
                     } else {
                         sh 'nohup python frontend_test.py &'
                     }

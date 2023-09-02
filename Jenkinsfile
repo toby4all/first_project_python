@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Install python packages') {
              steps {
-                bat 'pip install --user -r requirements.txt'
+                bat 'pip install --target ${env.WORKSPACE} -r requirements.txt'
             }
         }
         stage('Run Backend Server') {
@@ -98,6 +98,7 @@ def checkOs() {
         return "Windows"
     }
 }
+
 
 
 

@@ -12,9 +12,17 @@ pipeline {
                git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
             }
         }
+        stage('Set Python environment variable') {
+            steps {
+                script {
+                    env.PYTHON_PATH = 'C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311'
+                    echo "Python path set to: ${env.PYTHON_PATH}"
+                }
+            }
+        }
         stage('Install python packages') {
              steps {
-                bat 'pip install --target ${env.WORKSPACE} -r requirements.txt'
+                bat "${env.PYTHON_PATH}\\python.exe -m pip install --target ${env.WORKSPACE} -r requirements.txt"
             }
         }
         stage('Run Backend Server') {

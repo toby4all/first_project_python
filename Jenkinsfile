@@ -13,13 +13,6 @@ pipeline {
             }
         }
 
-        stage('Install python packages') {
-             steps {
-                script {
-                     bat "python -m pip install --target ${env.WORKSPACE} -r requirements.txt"
-                }
-            }
-        }
         stage('Run Backend Server') {
             steps {
                 script {

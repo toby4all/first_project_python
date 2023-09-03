@@ -6,6 +6,9 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
+    environment {
+       PATH = "${env.PATH}:C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311"
+    }
     stages {
         stage('Code pull') {
             steps {
@@ -14,7 +17,9 @@ pipeline {
         }
         stage('Install python packages') {
              steps {
-                bat 'python -m pip install --target ${env.WORKSPACE} -r requirements.txt'
+                script{
+                    bat 'python -m pip install --target ${env.WORKSPACE} -r requirements.txt'
+                }
             }
         }
         stage('Run backend server') {

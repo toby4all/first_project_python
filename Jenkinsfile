@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /with python3 rest_app.py'
+                        bat 'start /with python rest_app.py'
                     } else {
                         sh 'nohup python rest_app.py &'
                     }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /with python3 web_rest.py'
+                        bat 'start /with python web_rest.py'
                     } else {
                         sh 'nohup python web_rest.py &'
                     }
@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe frontend_test.py'
+                        bat 'python frontend_test.py'
                     } else {
                         sh 'nohup python frontend_test.py &'
                     }
@@ -73,7 +73,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe combine_testing.py'
+                        bat 'python combine_testing.py'
                     } else {
                         sh 'nohup python combine_testing.py &'
                     }
@@ -84,7 +84,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe clean_environment.py'
+                        bat 'python.exe clean_environment.py'
                     } else {
                         sh 'nohup python clean_environment.py &'
                     }

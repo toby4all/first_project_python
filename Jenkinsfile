@@ -7,7 +7,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
     environment {
-        env.PYTHON_PATH ='C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311'
+        env.PATH ='C:\\Python311\\python.exe.'
     }
     stages {
         stage('Checkout') {
@@ -18,7 +18,7 @@ pipeline {
 
         stage('Install python packages') {
              steps {
-                bat "${env.PYTHON_PATH}\\python.exe -m pip install --target ${env.WORKSPACE} -r requirements.txt"
+                bat "${env.PATH}\\python.exe -m pip install --target ${env.WORKSPACE} -r requirements.txt"
             }
         }
         stage('Run Backend Server') {

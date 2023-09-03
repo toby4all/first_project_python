@@ -7,103 +7,58 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
     stages {
-        stage('Checkout') {
+        stage('Code pull') {
             steps {
-               git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
-            }
-        }
-        stage('Set Python environment variable') {
-            steps {
-                script {
-                    env.PYTHON_PATH = 'C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311'
-                    echo "Python path set to: ${env.PYTHON_PATH}"
-                }
+                git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
             }
         }
         stage('Install python packages') {
              steps {
-                bat "${env.PYTHON_PATH}\\python.exe -m pip install --target ${env.WORKSPACE} -r requirements.txt"
+                bat 'pip install --user -r requirements.txt'
             }
         }
-        stage('Run Backend Server') {
+        stage('Run backend server') {
             steps {
                 script {
-                    if (checkOs() == 'Windows') {
-                        bat 'start/min ${env.PYTHON_PATH}\\python.exe rest_app.py'
-                    } else {
-                        sh 'nohup python rest_app.py &'
-                    }
+                    bat 'start/min python rest_app.py'
                 }
             }
         }
-        stage('Run Frontend Server') {
+        stage('Run frontend server') {
             steps {
                 script {
-                    if (checkOs() == 'Windows') {
-                        bat 'start/min ${env.PYTHON_PATH}\\python.exe web_rest.py'
-                    } else {
-                        sh 'nohup python web_rest.py &'
-                    }
+                    bat 'start/min python web_rest.py'
                 }
             }
         }
-        stage('Run Backend Test') {
+        stage('Run backend testing') {
             steps {
                 script {
-                    if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe backend_test.py'
-                    } else {
-                        sh 'nohup python backend_test.py &'
-                    }
+                    bat 'python backend_test.py'
                 }
             }
         }
-        stage('Run Frontend Test') {
+        stage('Run frontend testing') {
             steps {
                 script {
-                    if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe frontend_test.py'
-                    } else {
-                        sh 'nohup python frontend_test.py &'
-                    }
+                    bat 'python frontend_test.py'
                 }
             }
         }
-        stage('Run Combined Test') {
+        stage('Run combined testing') {
             steps {
                 script {
-                    if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe combine_testing.py'
-                    } else {
-                        sh 'nohup python combine_testing.py &'
-                    }
+                    bat 'python combine_testing.py'
                 }
             }
         }
-        stage('Clear Environment') {
+        stage('Run clean environment') {
             steps {
                 script {
-                    if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe clean_environment.py'
-                    } else {
-                        sh 'nohup python clean_environment.py &'
-                    }
+                    bat 'python clean_environment.py'
                 }
             }
         }
-    }
-}
-
-def checkOs() {
-    if (isUnix()) {
-        def uname = sh(script: 'uname', returnStdout: true)
-        if (uname.startsWith("Darwin")) {
-            return "Macos"
-        } else {
-            return "Linux"
-        }
-    } else {
-        return "Windows"
     }
 }
 

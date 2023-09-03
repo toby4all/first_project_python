@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/with python3 rest_app.py'
+                        bat 'start /with python3 rest_app.py'
                     } else {
                         sh 'nohup python rest_app.py &'
                     }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/with python3 web_rest.py'
+                        bat 'start /with python3 web_rest.py'
                     } else {
                         sh 'nohup python web_rest.py &'
                     }

@@ -1,13 +1,13 @@
 pipeline {
     agent any
-    environment {
-        env.PYTHON_PATH = "${env.PYTHON_PATH}:C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311"
-    }
     triggers {
         pollSCM('H/30 * * * *')
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
+    }
+    environment {
+        env.PYTHON_PATH = "${env.PYTHON_PATH}:C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311"
     }
     stages {
         stage('Checkout') {

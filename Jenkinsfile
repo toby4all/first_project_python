@@ -6,64 +6,99 @@ pipeline {
     options {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
-    environment {
-       PATH = "${env.PATH}:C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311"
-    }
     stages {
-        stage('Code pull') {
+        stage('Checkout') {
             steps {
-                git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
+               git([url: 'https://github.com/toby4all/first_project_python.git', branch: 'main'])
             }
         }
+
         stage('Install python packages') {
              steps {
-                script{
-                    bat 'python -m pip install --target ${env.WORKSPACE} -r requirements.txt'
+                script {
+                     bat "python -m pip install --target ${env.WORKSPACE} -r requirements.txt"
                 }
             }
         }
-        stage('Run backend server') {
+        stage('Run Backend Server') {
             steps {
                 script {
-                    bat 'start/min python rest_app.py'
+                    if (checkOs() == 'Windows') {
+                        bat 'start/min python rest_app.py'
+                    } else {
+                        sh 'nohup python rest_app.py &'
+                    }
                 }
             }
         }
-        stage('Run frontend server') {
+        stage('Run Frontend Server') {
             steps {
                 script {
-                    bat 'start/min python web_rest.py'
+                    if (checkOs() == 'Windows') {
+                        bat 'start/min python web_rest.py'
+                    } else {
+                        sh 'nohup python web_rest.py &'
+                    }
                 }
             }
         }
-        stage('Run backend testing') {
+        stage('Run Backend Test') {
             steps {
                 script {
-                    bat 'python backend_test.py'
+                    if (checkOs() == 'Windows') {
+                        bat 'python backend_test.py'
+                    } else {
+                        sh 'nohup python backend_test.py &'
+                    }
                 }
             }
         }
-        stage('Run frontend testing') {
+        stage('Run Frontend Test') {
             steps {
                 script {
-                    bat 'python frontend_test.py'
+                    if (checkOs() == 'Windows') {
+                        bat 'python frontend_test.py'
+                    } else {
+                        sh 'nohup python frontend_test.py &'
+                    }
                 }
             }
         }
-        stage('Run combined testing') {
+        stage('Run Combined Test') {
             steps {
                 script {
-                    bat 'python combine_testing.py'
+                    if (checkOs() == 'Windows') {
+                        bat 'python combine_testing.py'
+                    } else {
+                        sh 'nohup python combine_testing.py &'
+                    }
                 }
             }
         }
-        stage('Run clean environment') {
+        stage('Clear Environment') {
             steps {
                 script {
-                    bat 'python clean_environment.py'
+                    if (checkOs() == 'Windows') {
+                        bat 'python clean_environment.py'
+                    } else {
+                        sh 'nohup python clean_environment.py &'
+                    }
                 }
             }
         }
+    }
+}
+
+def checkOs() {
+    if (isUnix()) {
+        def uname = sh(script: 'uname', returnStdout: true)
+        if (uname.startsWith("Darwin")) {
+            return "Macos"
+        } else {
+            return "Linux"
+        }
+    } else {
+        return "Windows"
     }
 }
 

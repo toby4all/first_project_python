@@ -7,7 +7,7 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '20', daysToKeepStr: '5'))
     }
     environment {
-        env.PYTHON_PATH = "${env.PYTHON_PATH}:C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311"
+        env.PYTHON_PATH ="C:\\Users\\Toby\\AppData\\Local\\Programs\\Python\\Python311"
     }
     stages {
         stage('Checkout') {

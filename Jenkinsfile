@@ -22,14 +22,14 @@ pipeline {
         }
         stage('Install python packages') {
              steps {
-                bat "${env.PYTHON_PATH}\\python.exe -m pip install --target ${env.WORKSPACE} -r requirements.txt"
+                bat "${env.PYTHON_PATH}\\pythonw.exe -m pip install --target ${env.WORKSPACE} -r requirements.txt"
             }
         }
         stage('Run Backend Server') {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min ${env.PYTHON_PATH}\\python.exe rest_app.py'
+                        bat 'start/min ${env.PYTHON_PATH}\\pythonw.exe rest_app.py'
                     } else {
                         sh 'nohup python rest_app.py &'
                     }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start/min ${env.PYTHON_PATH}\\python.exe web_rest.py'
+                        bat 'start/min ${env.PYTHON_PATH}\\pythonw.exe web_rest.py'
                     } else {
                         sh 'nohup python web_rest.py &'
                     }
@@ -51,7 +51,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe backend_test.py'
+                        bat '${env.PYTHON_PATH}\\pythonw.exe backend_test.py'
                     } else {
                         sh 'nohup python backend_test.py &'
                     }
@@ -62,7 +62,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe frontend_test.py'
+                        bat '${env.PYTHON_PATH}\\pythonw.exe frontend_test.py'
                     } else {
                         sh 'nohup python frontend_test.py &'
                     }
@@ -73,7 +73,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe combine_testing.py'
+                        bat '${env.PYTHON_PATH}\\pythonw.exe combine_testing.py'
                     } else {
                         sh 'nohup python combine_testing.py &'
                     }
@@ -84,7 +84,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat '${env.PYTHON_PATH}\\python.exe clean_environment.py'
+                        bat '${env.PYTHON_PATH}\\pythonw.exe clean_environment.py'
                     } else {
                         sh 'nohup python clean_environment.py &'
                     }

@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /B ${env.PYTHON_PATH}\\pythonw.exe rest_app.py'
+                        bat 'start "" ${env.PYTHON_PATH}\\pythonw.exe rest_app.py'
                     } else {
                         sh 'nohup python rest_app.py &'
                     }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 script {
                     if (checkOs() == 'Windows') {
-                        bat 'start /B ${env.PYTHON_PATH}\\pythonw.exe web_rest.py'
+                        bat 'start "" ${env.PYTHON_PATH}\\pythonw.exe web_rest.py'
                     } else {
                         sh 'nohup python web_rest.py &'
                     }

@@ -25,6 +25,14 @@ pipeline {
                 bat "${env.PYTHON_PATH}\\pythonw.exe -m pip install --target ${env.WORKSPACE} -r requirements.txt"
             }
         }
+        stage('Debug') {
+             steps {
+                 script {
+                    bat 'python --version'
+                    bat 'echo %PYTHON_PATH%'
+                 }
+             }
+        }
         stage('Run Backend Server') {
             steps {
                 script {
